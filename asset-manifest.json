@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/radency-test-task/static/css/main.a60986aa.chunk.css",
+    "main.css": "/radency-test-task/static/css/main.8dda8ace.chunk.css",
     "main.js": "/radency-test-task/static/js/main.f08fc56a.chunk.js",
     "main.js.map": "/radency-test-task/static/js/main.f08fc56a.chunk.js.map",
     "runtime-main.js": "/radency-test-task/static/js/runtime-main.10116310.js",
@@ -8,7 +8,7 @@
     "static/js/2.249858c6.chunk.js": "/radency-test-task/static/js/2.249858c6.chunk.js",
     "static/js/2.249858c6.chunk.js.map": "/radency-test-task/static/js/2.249858c6.chunk.js.map",
     "index.html": "/radency-test-task/index.html",
-    "static/css/main.a60986aa.chunk.css.map": "/radency-test-task/static/css/main.a60986aa.chunk.css.map",
+    "static/css/main.8dda8ace.chunk.css.map": "/radency-test-task/static/css/main.8dda8ace.chunk.css.map",
     "static/js/2.249858c6.chunk.js.LICENSE.txt": "/radency-test-task/static/js/2.249858c6.chunk.js.LICENSE.txt",
     "static/media/arrow-top.5283cba2.svg": "/radency-test-task/static/media/arrow-top.5283cba2.svg",
     "static/media/spinner.e61bc095.svg": "/radency-test-task/static/media/spinner.e61bc095.svg"
@@ -16,7 +16,7 @@
   "entrypoints": [
     "static/js/runtime-main.10116310.js",
     "static/js/2.249858c6.chunk.js",
-    "static/css/main.a60986aa.chunk.css",
+    "static/css/main.8dda8ace.chunk.css",
     "static/js/main.f08fc56a.chunk.js"
   ]
 }
