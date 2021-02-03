@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/radency-test/static/css/main.a60986aa.chunk.css",
+    "main.js": "/radency-test/static/js/main.7d39f50c.chunk.js",
+    "main.js.map": "/radency-test/static/js/main.7d39f50c.chunk.js.map",
+    "runtime-main.js": "/radency-test/static/js/runtime-main.f64d51c9.js",
+    "runtime-main.js.map": "/radency-test/static/js/runtime-main.f64d51c9.js.map",
+    "static/js/2.7e461e5f.chunk.js": "/radency-test/static/js/2.7e461e5f.chunk.js",
+    "static/js/2.7e461e5f.chunk.js.map": "/radency-test/static/js/2.7e461e5f.chunk.js.map",
+    "index.html": "/radency-test/index.html",
+    "static/css/main.a60986aa.chunk.css.map": "/radency-test/static/css/main.a60986aa.chunk.css.map",
+    "static/js/2.7e461e5f.chunk.js.LICENSE.txt": "/radency-test/static/js/2.7e461e5f.chunk.js.LICENSE.txt",
+    "static/media/arrow-top.5283cba2.svg": "/radency-test/static/media/arrow-top.5283cba2.svg",
+    "static/media/spinner.e61bc095.svg": "/radency-test/static/media/spinner.e61bc095.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f64d51c9.js",
+    "static/js/2.7e461e5f.chunk.js",
+    "static/css/main.a60986aa.chunk.css",
+    "static/js/main.7d39f50c.chunk.js"
+  ]
+}
