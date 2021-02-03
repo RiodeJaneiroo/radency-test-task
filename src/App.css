@@ -98,3 +98,20 @@ body {
 .spinner img {
 	max-width: 70px;
 }
+
+@media (max-width: 1110px) {
+	body {
+		font-size: 12px;
+	}
+	.wrapper {
+		overflow: hidden;
+	}
+	.table {
+		overflow: scroll;
+		width: auto;
+	}
+	.table th,
+	.table td {
+		padding: 4px;
+	}
+}
