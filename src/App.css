@@ -103,11 +103,13 @@ body {
 	body {
 		font-size: 12px;
 	}
-	.wrapper {
+	.app {
 		overflow: hidden;
 	}
-	.table {
+	.wrapper {
 		overflow: scroll;
+	}
+	.table {
 		width: auto;
 	}
 	.table th,
