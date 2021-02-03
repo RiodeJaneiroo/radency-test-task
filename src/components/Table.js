@@ -17,6 +17,7 @@ const Table = ({ users }) => {
 					<th>License states</th>
 					<th>Expiration date</th>
 					<th>License number</th>
+					<th>Duplicate with</th>
 				</tr>
 			</thead>
 			<tbody>

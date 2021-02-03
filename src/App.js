@@ -36,14 +36,13 @@ class App extends Component {
 	};
 
 	onFileLoaded = (data, fileInfo) => {
-		const { setState } = this;
-		console.log(fileInfo);
 		if (fileInfo.type !== 'text/csv') {
-			return setState({
+			return this.setState({
 				error: 'File format is not correct',
 				loading: false,
 			});
 		}
+
 		this.setState({ msg: 'Checking the file' });
 		const searched = ['full_name', 'phone', 'email'];
 		const res = searched.every((item) => this.state.headers.includes(item));
@@ -52,12 +51,12 @@ class App extends Component {
 			const validWorker = new Worker('./valid-worker.js');
 			validWorker.postMessage(data);
 			validWorker.onerror = () =>
-				setState({ error: 'Something went wrong', loading: false });
+				this.setState({ error: 'Something went wrong', loading: false });
 			validWorker.onmessage = (e) => {
 				/* Если большой файл, то лучше сделать пагинацию */
 				const users = e.data.slice(0, 500);
 
-				setState({
+				this.setState({
 					data: users,
 					loading: false,
 					msg: '',
@@ -65,10 +64,11 @@ class App extends Component {
 				validWorker.terminate();
 			};
 		} else {
-			setState({ error: 'File format is not correct', loading: false });
+			this.setState({ error: 'File format is not correct', loading: false });
 		}
 	};
-	handleError = (error) => console.log(error, 'error');
+
+	handleError = (error) => this.setState({ error, loading: false });
 
 	render() {
 		const { data, error, loading, msg } = this.state;

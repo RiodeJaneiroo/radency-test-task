@@ -1,30 +1,35 @@
 import React from 'react';
 
+const TdItem = ({ text, valid = true }) =>
+	valid ? <td>{text}</td> : <td className='red'>{text}</td>;
+
 const TableItem = ({ user }) => {
 	if (!user) return null;
 
 	const { validFields } = user;
 	return (
 		<tr>
-			<td>{user.id}</td>
-			<td>{user.full_name}</td>
-			<td className={validFields.phone ? '' : 'red'}>{user.phone}</td>
-			<td className={validFields.email ? '' : 'red'}>{user.email}</td>
-			<td className={validFields.age ? '' : 'red'}>{user.age}</td>
-			<td>{user.experience}</td>
-			<td className={validFields.yearly_income ? '' : 'red'}>
-				{user.yearly_income}
-			</td>
-			<td>{user.has_children}</td>
-			<td className={validFields.license_states ? '' : 'red'}>
-				{user.license_states}
-			</td>
-			<td className={validFields.expiration_date ? '' : 'red'}>
-				{user.expiration_date}
-			</td>
-			<td className={validFields.license_number ? '' : 'red'}>
-				{user.license_number}
-			</td>
+			<TdItem text={user.id} />
+			<TdItem text={user.full_name} />
+			<TdItem text={user.phone} valid={validFields.phone} />
+			<TdItem text={user.email} valid={validFields.email} />
+			<TdItem text={user.age} valid={validFields.age} />
+			<TdItem text={user.experience} valid={validFields.experience} />
+			<TdItem text={user.yearly_income} valid={validFields.yearly_income} />
+			<TdItem text={user.has_children} valid={validFields.has_children} />
+			<TdItem
+				text={user.license_states}
+				valid={validFields.license_states}
+			/>
+			<TdItem
+				text={user.expiration_date}
+				valid={validFields.expiration_date}
+			/>
+			<TdItem
+				text={user.license_number}
+				valid={validFields.license_number}
+			/>
+			<TdItem text={user.duplicate_with} />
 		</tr>
 	);
 };

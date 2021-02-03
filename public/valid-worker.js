@@ -91,49 +91,69 @@ const checkState = (state) => {
 	return arrState.every((el) => el.length === 2);
 };
 
-const checkEmail = (email) => {
-	return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-};
-const checkLicenseNum = (num) => {
-	return num.length === 6 && /(\d|\w){6}/.test(num);
-};
-const checkPhone = (phone) => {
-	return phone.length === 12 && phone.slice(0, 2) === '+1';
+const checkDate = (date) => {
+	if (
+		/([0-9]{4}-[0-9]{2}-[0-9]{2})|([0-9]{2}\/[0-9]{2}\/[0-9]{4})/.test(date)
+	) {
+		return new Date(date) > new Date();
+	}
+	return false;
 };
 
+const checkEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+const checkLicenseNum = (num) => num.length === 6 && /(\d|\w){6}/.test(num);
+
+const checkPhone = (phone) => phone.length === 12 && phone.slice(0, 2) === '+1';
+
+const checkExperience = (num, age) => num < age - 21;
+
+const checkYearlyIncome = (income) => income >= 0 && income <= 1_000_000;
+
+const checkChildren = (children) =>
+	['', 'FALSE', 'TRUE'].some((el) => el === children.trim());
+
 onmessage = function ({ data }) {
-	const formatUsers = data.map((user, idx) => {
-		return {
+	const users = data.map((user, idx) => {
+		let formatUser = {
 			id: idx + 1,
 			full_name: user.full_name.trim(),
 			age: user.age.trim(),
 			email: user.email.trim().toLowerCase(),
 			experience: user.experience.trim(),
 			expiration_date: user.expiration_date.trim(),
-			has_children: user.has_children.toUpperCase() || 'FALSE',
+			has_children: String(user.has_children).toUpperCase() || 'FALSE',
 			license_number: user.license_number.trim(),
 			license_states: formatState(user.license_states),
 			phone: formatPhone(user.phone),
 			yearly_income: parseFloat(user.yearly_income).toFixed(2),
 		};
-	});
-
-	const validUsers = formatUsers.map((user) => {
 		return {
-			...user,
+			...formatUser,
 			validFields: {
-				age: checkAge(user.age),
-				email: checkEmail(user.email),
-				phone: checkPhone(user.phone),
-				experience: true,
-				yearly_income: user.yearly_income <= 1_000_000,
-				license_states: checkState(user.license_states),
-				expiration_date: true,
-				has_children: true,
-				license_number: checkLicenseNum(user.license_number),
+				age: checkAge(formatUser.age),
+				email: checkEmail(formatUser.email),
+				phone: checkPhone(formatUser.phone),
+				experience: checkExperience(formatUser.experience, formatUser.age),
+				yearly_income: checkYearlyIncome(formatUser.yearly_income),
+				license_states: checkState(formatUser.license_states),
+				expiration_date: checkDate(formatUser.expiration_date),
+				has_children: checkChildren(formatUser.has_children),
+				license_number: checkLicenseNum(formatUser.license_number),
 			},
 		};
 	});
 
-	postMessage(validUsers);
+	const withDupUsers = users.reduceRight((prev, curr, idx, arr) => {
+		const dublicate = arr.slice(0, curr.id - 1).find((el) => {
+			return el.email === curr.email || el.phone === curr.phone;
+		});
+		const user = {
+			...curr,
+			duplicate_with: dublicate?.id || null,
+		};
+		return [user, ...prev];
+	}, []);
+
+	postMessage(withDupUsers);
 };
